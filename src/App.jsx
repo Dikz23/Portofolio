@@ -3,14 +3,14 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import TechStackFlow from "./components/TechStackFlow";
+import Roadmap from "./components/Roadmap";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Certificates from "./components/Certificates";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Loading from "./components/Loading";
-import BookPageTransition from "./components/BookPageTransition";
+import ScrollAnimationWrapper from "./components/ScrollAnimationWrapper";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,37 +20,37 @@ export default function App() {
   }
 
   return (
-    <div className="bg-stone-50 min-h-screen text-stone-900 overflow-x-hidden">
+    <div className="bg-neutral-950 min-h-screen text-neutral-100 overflow-x-hidden selection:bg-neutral-700 selection:text-white">
       <Navbar />
       
       <main className="flex flex-col">
-        <BookPageTransition id="hero">
+        <ScrollAnimationWrapper>
           <Hero />
-        </BookPageTransition>
+        </ScrollAnimationWrapper>
 
-        <BookPageTransition id="tentang-saya">
+        <ScrollAnimationWrapper>
           <About />
-        </BookPageTransition>
+        </ScrollAnimationWrapper>
 
-        <BookPageTransition id="gallery">
-          <TechStackFlow />
-        </BookPageTransition>
+        <ScrollAnimationWrapper>
+          <Roadmap />
+        </ScrollAnimationWrapper>
 
-        <BookPageTransition id="keahlian">
+        <ScrollAnimationWrapper>
           <Skills />
-        </BookPageTransition>
+        </ScrollAnimationWrapper>
 
-        <BookPageTransition id="projects">
+        <ScrollAnimationWrapper>
           <Projects />
-        </BookPageTransition>
+        </ScrollAnimationWrapper>
 
-        <BookPageTransition id="sertifikat">
+        <ScrollAnimationWrapper>
           <Certificates />
-        </BookPageTransition>
+        </ScrollAnimationWrapper>
 
-        <BookPageTransition id="contact">
+        <ScrollAnimationWrapper>
           <Contact />
-        </BookPageTransition>
+        </ScrollAnimationWrapper>
       </main>
 
       <Footer />

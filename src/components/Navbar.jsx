@@ -6,14 +6,13 @@ function Navbar() {
   const [activeNav, setActiveNav] = useState("#hero");
   const [isVisible, setIsVisible] = useState(true);
 
-  // DAFTAR NAVIGASI (Menu Galeri ditambahkan di sini)
   const navLinks = [
     { name: "Beranda", href: "#hero" },
     { name: "Tentang", href: "#tentang-saya" },
-    { name: "Galeri", href: "#gallery" },      // <-- Menu Galeri hasil potret
-    { name: "Keahlian", href: "#keahlian" },      
+    { name: "Roadmap", href: "#roadmap" },
+    { name: "Keahlian", href: "#keahlian" },
     { name: "Proyek", href: "#projects" },
-    { name: "Sertifikat", href: "#sertifikat" },  
+    { name: "Sertifikat", href: "#sertifikat" },
     { name: "Kontak", href: "#contact" },
   ];
 
@@ -23,7 +22,6 @@ function Navbar() {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
 
-      // 1. Logika Sembunyikan/Tampilkan Navbar saat Scroll
       if (currentScrollPos > prevScrollPos && currentScrollPos > 50) {
         setIsVisible(false);
         setIsOpen(false);
@@ -32,7 +30,6 @@ function Navbar() {
       }
       prevScrollPos = currentScrollPos;
 
-      // 2. Logika Otomatis Mengubah Active Nav Sesuai Posisi Scroll Halaman
       const sections = navLinks.map((link) => link.href.substring(1));
       const scrollPosition = window.scrollY + 200;
 
@@ -52,7 +49,7 @@ function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [navLinks]);
+  }, []);
 
   const handleNavClick = (href) => {
     setActiveNav(href);
@@ -61,26 +58,23 @@ function Navbar() {
 
   return (
     <header
-      className={`fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-5xl transition-all duration-500 ease-in-out ${
+      className={`fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-5xl transition-all duration-500 ease-in-out ${
         isVisible
           ? "translate-y-0 opacity-100"
           : "-translate-y-28 opacity-0 pointer-events-none"
       }`}
     >
-      {/* Kontainer Utama */}
-      <nav className="bg-white/80 backdrop-blur-md border border-stone-200/80 shadow-lg shadow-stone-200/50 rounded-full px-4 md:px-6 py-2 flex items-center justify-between">
+      <nav className="bg-black/90 backdrop-blur-md border border-neutral-800 shadow-2xl rounded-full px-5 py-2.5 flex items-center justify-between text-neutral-200">
         
-        {/* Logo / Nama */}
         <a 
           href="#hero" 
           onClick={() => handleNavClick("#hero")}
-          className="text-base md:text-lg font-bold tracking-wider text-stone-900 hover:text-amber-900 transition-colors pl-2"
+          className="text-base md:text-lg font-semibold tracking-wider text-white hover:text-neutral-400 transition-colors pl-2"
         >
-          AndikaSeptaNugraha<span className="text-amber-800">.</span>
+          AndikaSeptaNugraha<span className="text-neutral-400">.</span>
         </a>
 
-        {/* Menu Navigasi Desktop */}
-        <div className="hidden md:flex items-center space-x-1.5 lg:space-x-2 pr-1">
+        <div className="hidden md:flex items-center space-x-1 pr-1">
           {navLinks.map((link, index) => {
             const isActive = activeNav === link.href;
             return (
@@ -88,10 +82,10 @@ function Navbar() {
                 key={index}
                 href={link.href}
                 onClick={() => handleNavClick(link.href)}
-                className={`text-xs lg:text-sm font-medium px-3.5 py-1.5 rounded-full transition-all duration-300 ${
+                className={`text-xs lg:text-sm font-medium px-4 py-1.5 rounded-full transition-all duration-200 ${
                   isActive
-                    ? "text-amber-900 bg-amber-100/80 font-bold shadow-sm"
-                    : "text-stone-600 hover:text-amber-900 hover:bg-stone-100/60"
+                    ? "text-black bg-white font-semibold"
+                    : "text-neutral-400 hover:text-white hover:bg-neutral-900"
                 }`}
               >
                 {link.name}
@@ -100,10 +94,9 @@ function Navbar() {
           })}
         </div>
 
-        {/* Tombol Hamburger Mobile */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-stone-700 hover:text-black focus:outline-none pr-1"
+          className="md:hidden text-neutral-300 hover:text-white focus:outline-none pr-1"
           aria-label="Toggle Menu"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -116,9 +109,8 @@ function Navbar() {
         </button>
       </nav>
 
-      {/* Dropdown Menu Mobile */}
       {isOpen && (
-        <div className="md:hidden mt-2 bg-white/95 backdrop-blur-md border border-stone-200 rounded-2xl p-3 shadow-xl flex flex-col space-y-1.5">
+        <div className="md:hidden mt-2 bg-black border border-neutral-800 rounded-2xl p-3 shadow-2xl flex flex-col space-y-1">
           {navLinks.map((link, index) => {
             const isActive = activeNav === link.href;
             return (
@@ -126,10 +118,10 @@ function Navbar() {
                 key={index}
                 href={link.href}
                 onClick={() => handleNavClick(link.href)}
-                className={`text-sm font-medium px-4 py-2 rounded-xl transition-all ${
+                className={`text-sm font-medium px-4 py-2.5 rounded-xl transition-all ${
                   isActive
-                    ? "text-amber-900 bg-amber-100 font-bold"
-                    : "text-stone-700 hover:text-amber-900 hover:bg-stone-100"
+                    ? "text-black bg-white font-semibold"
+                    : "text-neutral-400 hover:text-white hover:bg-neutral-900"
                 }`}
               >
                 {link.name}
